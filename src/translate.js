@@ -2,19 +2,15 @@ const translate = (word) => {
   let lowercaseWord = word.toLowerCase();
   const vowels = ["a", "e", "i", "o", "u"];
   if (vowels.includes(lowercaseWord[0])) {
-    return (lowercaseWord += "way");
+    return `${lowercaseWord}way`;
   } else {
-    let updatedWord = lowercaseWord;
-    let i = 0;
-    while (true) {
-      if (!vowels.includes(lowercaseWord[i])) {
-        updatedWord = `${updatedWord.substring(1)}${lowercaseWord[i]}`;
-        i++;
-      } else {
-        break;
+    for (let i = 0; i < word.length; i++) {
+      if (vowels.includes(lowercaseWord[i])) {
+        const consonants = lowercaseWord.slice(0, i);
+        const middle = lowercaseWord.slice(i, word.length);
+        return `${middle}${consonants}ay`;
       }
     }
-    return `${updatedWord}ay`;
   }
 };
 
